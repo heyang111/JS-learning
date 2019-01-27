@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>JS学习</title>
+		
+		<style type="text/css">
+			.hide{
+				display: none;
+			}
+			.c1{
+				position: fixed;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				background-color: black;
+				opacity: 0.6;
+				z-index: 9;
+			}
+			.c2{
+				width: 500px;
+				height: 400px;
+				background-color: white;
+				position: fixed;
+				left: 50%;
+				top: 20%;
+				margin-left: -250;
+				margin-top: -200;
+				z-index: 10;
+				
+			}
+		</style>
+	</head>
+	<body style="margin: 0;">
+	<div>
+		
+		<input type="button" name="" id="" value="添加" onclick="showModule();"/>
+		<input type="button" name="" id="" value="全选" onclick="ChooseAll();"/>
+		<input type="button" name="" id="" value="反选" onclick="ResverAll();"/>
+		<input type="button" name="" id="" value="取消" onclick="CancelAll();"/>
+
+	<table>
+		<thead>
+				<tr>
+					<th>选择</th>
+					<th>姓名</th>
+					<th>性别</th>
+				</tr>		
+		</thead>
+			<tbody id="tb">
+				<tr>
+					<th><input type="checkbox" name="" id="" value="" /></th>
+					<th>张三</th>
+					<th>21</th>
+				</tr>
+				<tr>
+					<th><input type="checkbox" name="" id="" value="" /></th>
+					<th>李四</th>
+					<th>25</th>
+				</tr>
+				<tr>
+					<th><input type="checkbox" name="" id="" value="" /></th>					
+					<th>王五</th>
+					<th>27</th>
+				</tr>
+			</tbody>
+	</table>
+		<!--遮罩层开始-->
+	<div id="i1" class="c1 hide">
+		
+	</div>
+		<!--遮罩层结束-->
+		
+		
+		<!--弹出框开始-->
+	<div id="i2" class="c2 hide">
+		<p><input type="text" name="" id="" value="" /></p>
+		<p><input type="text" name="" id="" value="" /></p>
+		<p>
+			<input type="button" name="" id="" value="确定" />
+			<input type="button" name="" id="" value="取消" onclick="HideMode()"/>
+		</p>
+	</div>
+		<!--弹出框结束-->
+	</div>
+	</body>
+	
+	<script type="text/javascript">
+//		点击添加显示遮罩层和弹出框
+		function showModule(){
+			document.getElementById("i1").classList.remove("hide")
+			document.getElementById("i2").classList.remove("hide")
+			
+//		点击取消隐藏遮罩层和弹出框			
+		}
+		function HideMode(){
+			document.getElementById("i1").classList.add("hide")
+			document.getElementById("i2").classList.add("hide")
+		}
+//		点击全选选择全部复选框
+		function ChooseAll(){
+			var tbody=document.getElementById("tb")
+			var tr_list=tbody.children;//获取tbody里所有tr
+			for(var i=0;i<tr_list.length;i++){//对所有checkbox遍历操作
+				var current_tr=tr_list[i];
+				var checkbox=current_tr.children[0].children[0];//获得checkbox
+				checkbox.checked=true;				 //用.check对checkbox操作
+			}
+		}
+//		点击取消取消全部复选框,复制上面的并修改
+		function CancelAll(){
+			var tbody=document.getElementById("tb")
+			var tr_list=tbody.children;
+			for(var i=0;i<tr_list.length;i++){
+				var current_tr=tr_list[i];
+				var checkbox=current_tr.children[0].children[0];
+				checkbox.checked=false;				 
+			}
+		}
+		
+//		点击反选反选全部复选框
+		function ResverAll(){
+			var tbody=document.getElementById("tb")
+			var tr_list=tbody.children;
+			for(var i=0;i<tr_list.length;i++){
+				var current_tr=tr_list[i];
+				var checkbox=current_tr.children[0].children[0];
+				if(checkbox.checked){
+					checkbox.checked=false;
+				}else{
+					checkbox.checked=true;
+				}
+			}
+		}
+	</script>
+	
+</html>
